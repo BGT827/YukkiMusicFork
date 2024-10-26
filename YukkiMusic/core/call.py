@@ -551,20 +551,33 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "stream"
 
+    
     async def ping(self):
         pings = []
-        for call in self.calls:
-            pings.append(call.ping)
-        if pings:
-            return str(round(sum(pings) / len(pings), 3))
-        else:
-            LOGGER(__name__).error("No active clients for ping calculation.")
-            return "No active clients"
+        if config.STRING1:
+            pings.append(await self.one.ping)
+        if config.STRING2:
+            pings.append(await self.two.ping)
+        if config.STRING3:
+            pings.append(await self.three.ping)
+        if config.STRING4:
+            pings.append(await self.four.ping)
+        if config.STRING5:
+            pings.append(await self.five.ping)
+        return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
-        """Starts all PyTgCalls instances for the existing userbot clients."""
-        LOGGER(__name__).info(f"Starting PyTgCall Clients")
-        await asyncio.gather(*[c.start() for c in self.calls])
+        LOGGER(__name__).info("Starting PyTgCalls Client\n")
+        if config.STRING1:
+            await self.one.start()
+        if config.STRING2:
+            await self.two.start()
+        if config.STRING3:
+            await self.three.start()
+        if config.STRING4:
+            await self.four.start()
+        if config.STRING5:
+            await self.five.start()
 
     async def decorators(self):
         for call in self.calls:
