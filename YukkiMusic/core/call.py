@@ -36,26 +36,70 @@ from YukkiMusic.utils.inline.play import stream_markup, telegram_markup
 from YukkiMusic.utils.stream.autoclear import auto_clean
 from YukkiMusic.utils.thumbnails import gen_thumb
 
+autoend = {}
+counter = {}
+AUTO_END_TIME = 3
+
+
 async def _clear_(chat_id):
-    popped = db.pop(chat_id, None)
-    if popped:
-        await auto_clean(popped)
     db[chat_id] = []
     await remove_active_video_chat(chat_id)
     await remove_active_chat(chat_id)
-    await set_loop(chat_id, 0)
 
-class Call:
+
+class Call(PyTgCalls):
     def __init__(self):
-        self.calls = []
-
-        for client in userbot.clients:
-            pycall = PyTgCalls(
-                client,
-                cache_duration=100,
-            )
-            self.calls.append(pycall)
-
+        self.userbot1 = Client(
+            "y", 
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=str(config.STRING1),
+        )
+        self.one = PyTgCalls(
+            self.userbot1,
+            cache_duration=100,
+        )
+        self.userbot2 = Client(
+            "y", 
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=str(config.STRING2),
+        )
+        self.two = PyTgCalls(
+            self.userbot2,
+            cache_duration=100,
+        )
+        self.userbot3 = Client(
+            "y", 
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=str(config.STRING3),
+        )
+        self.three = PyTgCalls(
+            self.userbot3,
+            cache_duration=100,
+        )
+        self.userbot4 = Client(
+            "y" 
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=str(config.STRING4),
+        )
+        self.four = PyTgCalls(
+            self.userbot4,
+            cache_duration=100,
+        )
+        self.userbot5 = Client(
+            "y",
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=str(config.STRING5),
+        )
+        self.five = PyTgCalls(
+            self.userbot5,
+            cache_duration=100,
+        )
+        
     async def pause_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
         await assistant.pause_stream(chat_id)
