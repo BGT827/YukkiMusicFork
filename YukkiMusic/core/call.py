@@ -22,9 +22,9 @@ from ntgcalls import TelegramServerError
 from pytgcalls import PyTgCalls
 from pytgcalls.exceptions import (AlreadyJoinedError,
                                   NoActiveGroupCall)
-from pytgcalls.types import (JoinedGroupCallParticipant, 
+from pytgcalls.types import (GroupCallParticipant, 
                              MediaStream,
-                             LeftGroupCallParticipant, Update)
+                             Update)
 from pytgcalls.types.stream import StreamAudioEnded
 import config
 from strings import get_string
