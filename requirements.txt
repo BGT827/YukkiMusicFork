@@ -8,11 +8,11 @@ hachoir
 heroku3
 lyricsgenius
 motor
+ntgcalls
 pillow
 psutil
 pykeyboard
-py-tgcalls==1.2.9
-git+https://github.com/KurimuzonAkuma/pyrogram@dev
+py-tgcalls==2.0.4
 python-dotenv
 pyyaml
 requests
@@ -22,3 +22,5 @@ tgcrypto
 youtube-search
 youtube-search-python
 yt-dlp
+git+https://github.com/KurimuzonAkuma/pyrogram@dev
+git+https://github.com/Vivekkumar-IN/yt-dlp-youtube-oauth2
